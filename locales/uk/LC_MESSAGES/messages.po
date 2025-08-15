@@ -1,0 +1,79 @@
+# Ukrainian translations for PROJECT.
+# Copyright (C) 2025 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2025-08-16 00:11+0300\n"
+"PO-Revision-Date: 2025-08-16 00:11+0300\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: uk\n"
+"Language-Team: uk <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: bot/handlers/auth.py:13
+msgid ""
+"Welcome to the Swipe Bot.\n"
+"Select one of the listed options below:"
+msgstr "Ласкава просимо до Swipe Bot.\nВиберіть одну з перелічених нижче опцій:"
+
+#: bot/handlers/language.py:20
+msgid "Choose a language:"
+msgstr "Виберіть мову:"
+
+#: bot/handlers/language.py:36
+msgid "Language has been successfully changed."
+msgstr "Мова успішно змінена."
+
+#: bot/handlers/language.py:45
+msgid "You have returned to the main menu."
+msgstr "Ви повернулись до головного меню."
+
+#: bot/keyboards/language.py:6
+msgid "English"
+msgstr "English"
+
+#: bot/keyboards/language.py:6
+msgid "Українська"
+msgstr "Українська"
+
+#: bot/keyboards/language.py:7
+msgid "Back"
+msgstr "Назад"
+
+#: bot/keyboards/language.py:10
+msgid "Select language..."
+msgstr "Виберіть мову..."
+
+#: bot/keyboards/start.py:7
+msgid "Login"
+msgstr "Увійти"
+
+#: bot/keyboards/start.py:8
+msgid "Register"
+msgstr "Зареєструватись"
+
+#: bot/keyboards/start.py:9
+msgid "Change language"
+msgstr "Змінити мову"
+
+#: bot/keyboards/start.py:12
+msgid "Select action..."
+msgstr "Виберіть дію..."
+
+#: bot/middlewares/auth.py:42
+msgid "You are not authorized. Please, log in or register."
+msgstr "Ви не авторизовані. Будь ласка, увійдіть або зареєструйтесь."
+
+#: bot/middlewares/auth.py:45 bot/middlewares/auth.py:47
+msgid "Select action:"
+msgstr "Виберіть дію:"
+

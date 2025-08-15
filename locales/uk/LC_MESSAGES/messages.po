@@ -23,7 +23,7 @@ msgstr ""
 msgid ""
 "Welcome to the Swipe Bot.\n"
 "Select one of the listed options below:"
-msgstr "Ласкава просимо до Swipe Bot.\nВиберіть одну з перелічених нижче опцій:"
+msgstr "Ласкаво просимо до Swipe Bot.\nВиберіть одну з перелічених нижче опцій:"
 
 #: bot/handlers/language.py:20
 msgid "Choose a language:"

@@ -215,3 +215,31 @@ async def register_edit_password(message: Message, state: FSMContext):
         text=_("Enter password:"),
         reply_markup=get_register_edit_password_keyboard()
     )
+
+
+@router.message(F.text == __("Back"), LoginStates.ENTER_PASSWORD)
+@router.message(F.text == __("Login"), StartStates.START_MENU)
+async def login_enter_email(message: Message, state: FSMContext):
+    await state.set_state(LoginStates.ENTER_EMAIL)
+    await message.answer(
+        text=_("Enter email:"),
+        reply_markup=get_login_enter_email_keyboard()
+    )
+
+
+@router.message(F.text, LoginStates.ENTER_EMAIL)
+async def login_enter_password(message: Message, state: FSMContext):
+    email = message.text
+    if validate_email(email):
+        await state.update_data({"email": email})
+        await state.set_state(LoginStates.ENTER_PASSWORD)
+        await message.answer(
+            text=_("Enter password:"),
+            reply_markup=get_login_enter_password_keyboard()
+        )
+    else:
+        await state.set_state(LoginStates.ENTER_EMAIL)
+        await message.answer(
+            text=_("Validation error. Please, enter email again:"),
+            reply_markup=get_login_enter_email_keyboard()
+        )

@@ -1,6 +1,7 @@
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from aiogram.utils.i18n import gettext as _
 
+
 def get_login_enter_email_keyboard():
     return ReplyKeyboardMarkup(
         keyboard=[
@@ -10,9 +11,11 @@ def get_login_enter_email_keyboard():
         input_field_placeholder=_("Enter email...")
     )
 
+
 def get_login_enter_password_keyboard():
     return ReplyKeyboardMarkup(
         keyboard=[
+            [KeyboardButton(text=_("Submit"))],
             [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))],
         ],
         resize_keyboard=True,
@@ -59,6 +62,7 @@ def get_register_enter_password_keyboard():
         input_field_placeholder=_("Enter password...")
     )
 
+
 def get_register_submit_menu_keyboard():
     return ReplyKeyboardMarkup(
         keyboard=[
@@ -72,6 +76,7 @@ def get_register_submit_menu_keyboard():
         resize_keyboard=True,
         input_field_placeholder=_("Select action...")
     )
+
 
 def get_register_edit_name_keyboard():
     return ReplyKeyboardMarkup(
@@ -111,4 +116,3 @@ def get_register_edit_password_keyboard():
         resize_keyboard=True,
         input_field_placeholder=_("Edit password...")
     )
-

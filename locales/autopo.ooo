@@ -1,0 +1,5 @@
+#Tue Aug 19 16:18:10 EEST 2025
+ooo.autopo.description=Telegram bot based on API of previous pet project. Key features\:\n- login, register\n- switch language\n- view profile information, view own announcements\n- view announcements (for rent of apartment)\n- create announcements
+ooo.autopo.exclude=target
+ooo.autopo.name=SwipeBot
+ooo.autopo.template.path=/home/vladimirov/projects/SwipeBot/locales/messages.pot

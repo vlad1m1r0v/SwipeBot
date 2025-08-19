@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-16 00:11+0300\n"
-"PO-Revision-Date: 2025-08-16 00:11+0300\n"
+"POT-Creation-Date: 2025-08-19 16:08+0300\n"
+"PO-Revision-Date: 2025-08-19 16:09+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: uk\n"
 "Language-Team: uk <LL@li.org>\n"
@@ -19,61 +19,117 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
-#: bot/handlers/auth.py:13
+#: bot/handlers/language.py:19
+msgid "Select a language:"
+msgstr "Виберіть мову:"
+
+#: bot/handlers/language.py:40
+msgid "Language has been successfully changed."
+msgstr "Мову успішно змінено."
+
+#: bot/handlers/start.py:19
 msgid ""
 "Welcome to the Swipe Bot.\n"
 "Select one of the listed options below:"
-msgstr "Ласкаво просимо до Swipe Bot.\nВиберіть одну з перелічених нижче опцій:"
+msgstr "Вітаємо в Swipe Bot.\nВиберіть один з наведених нижче варіантів:"
 
-#: bot/handlers/language.py:20
-msgid "Choose a language:"
-msgstr "Виберіть мову:"
+#: bot/keyboards/auth.py:7 bot/keyboards/auth.py:16 bot/keyboards/auth.py:26
+#: bot/keyboards/auth.py:36 bot/keyboards/auth.py:46 bot/keyboards/auth.py:56
+msgid "Cancel"
+msgstr "Скасувати"
 
-#: bot/handlers/language.py:36
-msgid "Language has been successfully changed."
-msgstr "Мова успішно змінена."
-
-#: bot/handlers/language.py:45
-msgid "You have returned to the main menu."
-msgstr "Ви повернулись до головного меню."
-
-#: bot/keyboards/language.py:6
-msgid "English"
-msgstr "English"
-
-#: bot/keyboards/language.py:6
-msgid "Українська"
-msgstr "Українська"
-
-#: bot/keyboards/language.py:7
+#: bot/keyboards/auth.py:7 bot/keyboards/auth.py:16 bot/keyboards/auth.py:26
+#: bot/keyboards/auth.py:36 bot/keyboards/auth.py:46 bot/keyboards/auth.py:56
+#: bot/keyboards/auth.py:79 bot/keyboards/auth.py:89 bot/keyboards/auth.py:99
+#: bot/keyboards/auth.py:109 bot/keyboards/language.py:9
 msgid "Back"
 msgstr "Назад"
 
-#: bot/keyboards/language.py:10
-msgid "Select language..."
-msgstr "Виберіть мову..."
+#: bot/keyboards/auth.py:10 bot/keyboards/auth.py:39
+msgid "Enter email..."
+msgstr "Введіть електронну адресу..."
 
-#: bot/keyboards/start.py:7
-msgid "Login"
-msgstr "Увійти"
+#: bot/keyboards/auth.py:19 bot/keyboards/auth.py:59
+msgid "Enter password..."
+msgstr "Введіть пароль..."
 
-#: bot/keyboards/start.py:8
-msgid "Register"
-msgstr "Зареєструватись"
+#: bot/keyboards/auth.py:29
+msgid "Enter name..."
+msgstr "Введіть ім'я..."
 
-#: bot/keyboards/start.py:9
-msgid "Change language"
-msgstr "Змінити мову"
+#: bot/keyboards/auth.py:49
+msgid "Enter phone number..."
+msgstr "Введіть номер телефону..."
 
-#: bot/keyboards/start.py:12
+#: bot/keyboards/auth.py:65
+msgid "Edit name"
+msgstr "Редагувати ім'я"
+
+#: bot/keyboards/auth.py:66
+msgid "Edit email"
+msgstr "Редагувати електронну адресу"
+
+#: bot/keyboards/auth.py:67
+msgid "Edit phone number"
+msgstr "Редагувати номер телефону"
+
+#: bot/keyboards/auth.py:68
+msgid "Edit password"
+msgstr "Редагувати пароль"
+
+#: bot/keyboards/auth.py:69
+msgid "Submit"
+msgstr "Підтвердити"
+
+#: bot/keyboards/auth.py:73 bot/keyboards/start.py:13
 msgid "Select action..."
 msgstr "Виберіть дію..."
 
-#: bot/middlewares/auth.py:42
-msgid "You are not authorized. Please, log in or register."
-msgstr "Ви не авторизовані. Будь ласка, увійдіть або зареєструйтесь."
+#: bot/keyboards/auth.py:82
+msgid "Edit name..."
+msgstr "Редагувати ім'я..."
 
-#: bot/middlewares/auth.py:45 bot/middlewares/auth.py:47
+#: bot/keyboards/auth.py:92
+msgid "Edit email..."
+msgstr "Редагувати електронну адресу..."
+
+#: bot/keyboards/auth.py:102
+msgid "Edit phone number..."
+msgstr "Редагувати номер телефону..."
+
+#: bot/keyboards/auth.py:112
+msgid "Edit password..."
+msgstr "Редагувати пароль..."
+
+#: bot/keyboards/language.py:8
+msgid "English"
+msgstr "English"
+
+#: bot/keyboards/language.py:8
+msgid "Українська"
+msgstr "Українська"
+
+#: bot/keyboards/language.py:12
+msgid "Select language..."
+msgstr "Виберіть мову..."
+
+#: bot/keyboards/start.py:8
+msgid "Login"
+msgstr "Увійти"
+
+#: bot/keyboards/start.py:9
+msgid "Register"
+msgstr "Зареєструватися"
+
+#: bot/keyboards/start.py:10
+msgid "Change language"
+msgstr "Змінити мову"
+
+#: bot/middlewares/auth.py:40
+msgid "You are not authorized. Please, log in or register."
+msgstr "Ви не авторизовані. Будь ласка, увійдіть або зареєструйтеся."
+
+#: bot/middlewares/auth.py:43 bot/middlewares/auth.py:45
 msgid "Select action:"
 msgstr "Виберіть дію:"
 

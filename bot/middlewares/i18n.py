@@ -2,8 +2,7 @@ from aiogram.utils.i18n import I18n, I18nMiddleware
 from typing import Dict, Any
 from aiogram.types import TelegramObject
 
-from bot.database.repository import Repository
-from bot.database.schemas import GetUser
+from bot.database import (Repository, GetUser)
 from bot.utilities.enums import Language
 
 

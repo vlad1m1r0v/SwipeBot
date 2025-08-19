@@ -5,11 +5,9 @@ from aiogram import BaseMiddleware
 from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.context import FSMContext
 
-from bot.database.repository import Repository
-from bot.database.schemas import GetUser, CreateUser
-from bot.keyboards.start import get_start_menu_keyboard
-from bot.states.auth import AuthStates, LoginStates, RegisterStates
-from bot.states.language import LanguageStates
+from bot.database import (Repository, GetUser, CreateUser)
+from bot.keyboards import get_start_menu_keyboard
+from bot.states import (StartStates, LanguageStates, LoginStates, RegisterStates)
 
 
 class AuthMiddleware(BaseMiddleware):
@@ -25,24 +23,29 @@ class AuthMiddleware(BaseMiddleware):
 
         state: FSMContext = data.get("state")
         current_state = await state.get_state()
+        is_auth_state = current_state in [
+            *StartStates,
+            *LanguageStates,
+            *RegisterStates,
+            *LoginStates
+        ]
+
+        if is_auth_state:
+            return await handler(event, data)
 
         user: GetUser | None = await repository.get_user(telegram_id)
-
-        if bool(user) and bool(user.get("access_token")):
-            return await handler(event, data)
 
         if user is None:
             await repository.create_user(CreateUser(telegram_id=telegram_id))
 
         is_authenticated = bool(user and user.get("access_token"))
-        is_auth_state = current_state in [*AuthStates, *LanguageStates, *RegisterStates, *LoginStates]
 
-        if not is_auth_state and not is_authenticated:
-            await state.set_state(AuthStates.START)
-            await event.answer(_("You are not authorized. Please, log in or register."))
+        if not is_authenticated:
+            await state.set_state(StartStates.START_MENU)
+            text = _("You are not authorized. Please, log in or register.")
 
             if isinstance(event, CallbackQuery):
-                await event.message.answer(_("Select action:"), reply_markup=get_start_menu_keyboard())
+                return await event.message.answer(text=text, reply_markup=get_start_menu_keyboard())
             else:
-                await event.answer(_("Select action:"), reply_markup=get_start_menu_keyboard())
+                return await event.answer(text=text, reply_markup=get_start_menu_keyboard())
         return await handler(event, data)

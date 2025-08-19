@@ -3,12 +3,13 @@ from dataclasses import asdict
 from pymongo import AsyncMongoClient
 from pymongo.results import InsertOneResult, UpdateResult
 
-from bot.database.schemas import (
+from bot.utilities.dict import exclude_none_factory
+
+from .schemas import (
     GetUser,
     CreateUser,
     UpdateUser
 )
-from bot.utilities.dict import exclude_none_factory
 
 
 class Repository:

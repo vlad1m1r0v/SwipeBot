@@ -1,26 +1,28 @@
+from aiogram import Router, F
 from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
-from aiogram.utils.i18n import I18n, gettext as _
+from aiogram.utils.i18n import gettext as _, lazy_gettext as __
 
-from bot.database.repository import Repository
-from bot.database.schemas import UpdateUser
-from bot.states.auth import AuthStates
-from bot.states.language import LanguageStates
-from bot.keyboards.start import get_start_menu_keyboard
-from bot.keyboards.language import get_language_keyboard
+from bot.database import (Repository, UpdateUser)
+from bot.states import (StartStates, LanguageStates)
+from bot.keyboards import (get_language_menu_keyboard, get_start_menu_keyboard)
 from bot.utilities.enums import Language
 
+router = Router()
 
+
+@router.message(F.text == __("Change language"), StartStates.START_MENU)
 async def language_menu(message: Message, state: FSMContext):
-    await state.set_state(LanguageStates.SWITCH_LANGUAGE)
+    await state.set_state(LanguageStates.LANGUAGE_MENU)
 
     return await message.answer(
-        text=_("Choose a language:"),
-        reply_markup=get_language_keyboard()
+        text=_("Select a language:"),
+        reply_markup=get_language_menu_keyboard()
     )
 
 
-async def set_language(
+@router.message(F.text.in_({"English", "Українська"}), LanguageStates.LANGUAGE_MENU)
+async def select_language(
         message: Message,
         repository: Repository,
         state: FSMContext,
@@ -32,18 +34,9 @@ async def set_language(
         data=UpdateUser(language=language_code)
     )
 
-    await state.set_state(AuthStates.START)
+    await state.set_state(StartStates.START_MENU)
 
     await message.answer(
         _("Language has been successfully changed.", locale=language_code),
         reply_markup=get_start_menu_keyboard(language_code)
-    )
-
-
-async def back_to_start(message: Message, state: FSMContext):
-    await state.set_state(AuthStates.START)
-
-    await message.answer(
-        _("You have returned to the main menu."),
-        reply_markup=get_start_menu_keyboard()
     )

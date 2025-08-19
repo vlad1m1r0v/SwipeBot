@@ -1,8 +1,5 @@
 from aiogram.fsm.state import StatesGroup, State
 
-class AuthStates(StatesGroup):
-    START = State()
-
 class RegisterStates(StatesGroup):
     ENTER_NAME = State()
     ENTER_PHONE = State()
@@ -12,7 +9,7 @@ class RegisterStates(StatesGroup):
     EDIT_PHONE = State()
     EDIT_EMAIL = State()
     EDIT_PASSWORD = State()
-    SUBMIT_FORM = State()
+    SUBMIT_MENU = State()
 
 
 class LoginStates(StatesGroup):

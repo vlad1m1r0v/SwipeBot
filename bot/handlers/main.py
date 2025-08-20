@@ -69,6 +69,7 @@ async def main_menu(message: Message, **kwargs):
                 reply_markup=get_login_enter_password_keyboard()
             )
 
+    await state.clear()
     await state.set_state(MainStates.MAIN_MENU)
 
     return await message.answer(

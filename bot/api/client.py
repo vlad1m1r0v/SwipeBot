@@ -12,7 +12,9 @@ from .schemas import (
     LoginScheme,
     RegisterScheme,
     TokensSchema,
-    SuccessResponse
+    SuccessResponse,
+    PaginatedResponse,
+    GetAnnouncementSchema
 )
 
 
@@ -118,3 +120,12 @@ class APIClient:
         )
 
         return response
+
+    async def get_announcements(
+            self, offset: int
+    ) -> SuccessResponse[PaginatedResponse[GetAnnouncementSchema]]:
+        return await self.__make_authorized_request(
+            method="GET",
+            path="/announcements",
+            params={"limit": 1, "offset": offset}
+        )

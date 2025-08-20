@@ -35,7 +35,6 @@ async def select_language(
     )
 
     await state.set_state(StartStates.START_MENU)
-
     await message.answer(
         _("Language has been successfully changed.", locale=language_code),
         reply_markup=get_start_menu_keyboard(language_code)

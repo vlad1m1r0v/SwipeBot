@@ -10,30 +10,30 @@ from aiogram.client.default import DefaultBotProperties
 
 from redis.asyncio import Redis
 
-from bot.handlers import router
 from bot.utilities.enums import Language
 from bot.utilities.dirs import (ENV_PATH, LOCALES_DIR)
+from bot.handlers import router
 from bot.database import Repository
 from bot.middlewares import (CustomI18nMiddleware, AuthMiddleware)
 
 
 async def bot_start() -> None:
-    redis = Redis.from_url(os.getenv("REDIS_URI"))
     repository = Repository(mongo_uri=os.getenv("MONGO_URI"))
 
+    redis = Redis.from_url(os.getenv("REDIS_URI"))
     dispatcher = Dispatcher(storage=RedisStorage(redis=redis))
 
     dispatcher.include_router(router)
 
-    i18n = I18n(path=LOCALES_DIR, default_locale=Language.EN, domain='messages')
+    i18n = I18n(path=LOCALES_DIR, default_locale=Language.EN, domain="messages")
     i18n_middleware = CustomI18nMiddleware(i18n)
 
     i18n_middleware.setup(dispatcher)
 
-    # dispatcher.message.middleware(AuthMiddleware())
-    # dispatcher.callback_query.middleware(AuthMiddleware())
+    dispatcher.message.middleware(AuthMiddleware())
+    dispatcher.callback_query.middleware(AuthMiddleware())
 
-    bot = Bot(token=os.getenv("BOT_TOKEN"), default=DefaultBotProperties(parse_mode='HTML'))
+    bot = Bot(token=os.getenv("BOT_TOKEN"), default=DefaultBotProperties(parse_mode="HTML"))
 
     await dispatcher.start_polling(bot, repository=repository)
 

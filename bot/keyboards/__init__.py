@@ -13,6 +13,7 @@ from .auth import (
     get_register_edit_phone_keyboard,
     get_register_edit_password_keyboard
 )
+from .main import get_main_menu_keyboard
 
 __all__ = (
     "get_language_menu_keyboard",
@@ -27,6 +28,7 @@ __all__ = (
     "get_register_edit_name_keyboard",
     "get_register_edit_email_keyboard",
     "get_register_edit_phone_keyboard",
-    "get_register_edit_password_keyboard"
+    "get_register_edit_password_keyboard",
+    "get_main_menu_keyboard"
 
 )

@@ -15,7 +15,6 @@ def get_login_enter_email_keyboard():
 def get_login_enter_password_keyboard():
     return ReplyKeyboardMarkup(
         keyboard=[
-            [KeyboardButton(text=_("Submit"))],
             [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))],
         ],
         resize_keyboard=True,

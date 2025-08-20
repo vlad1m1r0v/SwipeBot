@@ -8,7 +8,8 @@ from bot.states import (
     StartStates,
     LanguageStates,
     RegisterStates,
-    LoginStates
+    LoginStates,
+    MainStates
 )
 from bot.keyboards import get_start_menu_keyboard
 
@@ -16,6 +17,7 @@ router = Router()
 
 
 @router.message(CommandStart())
+@router.message(F.text == __("Log out"), MainStates.MAIN_MENU)
 @router.message(F.text == __("Back"), LoginStates.ENTER_EMAIL)
 @router.message(F.text == __("Cancel"), LoginStates.ENTER_EMAIL)
 @router.message(F.text == __("Cancel"), LoginStates.ENTER_PASSWORD)
@@ -26,7 +28,10 @@ router = Router()
 @router.message(F.text == __("Cancel"), RegisterStates.ENTER_PASSWORD)
 @router.message(F.text == __("Cancel"), RegisterStates.SUBMIT_MENU)
 @router.message(F.text == __("Back"), LanguageStates.LANGUAGE_MENU)
-async def start_menu(message: Message, state: FSMContext):
+async def start_menu(
+        message: Message,
+        state: FSMContext
+):
     await state.clear()
     await state.set_state(StartStates.START_MENU)
 

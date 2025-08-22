@@ -50,9 +50,7 @@ async def announcements_feed(
     callback_data = kwargs.get("callback_data", {})
     offset = data.get("offset", 0)
 
-    if isinstance(event, CallbackQuery):
-
-        if isinstance(callback_data, PaginationCallback):
+    if isinstance(event, CallbackQuery) and isinstance(callback_data, PaginationCallback):
             offset = callback_data.offset
             await state.update_data({"offset": offset})
 

@@ -6,7 +6,8 @@ from aiogram import Router, F
 from aiogram.types import (
     Message,
     CallbackQuery,
-    InputMediaPhoto
+    InputMediaPhoto,
+    ReplyKeyboardRemove
 )
 from aiogram.fsm.context import FSMContext
 from aiogram.utils.i18n import gettext as _, lazy_gettext as __
@@ -24,13 +25,19 @@ from bot.states import (
 )
 from bot.keyboards import (
     get_announcements_feed_inline_keyboard,
-    PaginationCallback
+    get_geo_inline_keyboard
+)
+from bot.callbacks import (
+    PaginationCallback,
+    GeolocationCallback,
+    BackCallback,
 )
 
 router = Router()
 
 
-@router.callback_query(PaginationCallback.filter(), AnnouncementsStates.ANNOUNCEMENTS_FEED)
+@router.callback_query(BackCallback.filter(), AnnouncementsStates.GEO)
+@router.callback_query(PaginationCallback.filter(), AnnouncementsStates.FEED)
 @router.message(F.text == __("Announcements"), MainStates.MAIN_MENU)
 async def announcements_feed(
         event: Union[Message, CallbackQuery],
@@ -38,15 +45,16 @@ async def announcements_feed(
         state: FSMContext,
         **kwargs
 ):
-    await state.set_state(AnnouncementsStates.ANNOUNCEMENTS_FEED)
+    await state.set_state(AnnouncementsStates.FEED)
     data = await state.get_data()
-
+    callback_data = kwargs.get("callback_data", {})
     offset = data.get("offset", 0)
 
     if isinstance(event, CallbackQuery):
-        callback_data: PaginationCallback = kwargs.get("callback_data")
-        offset = callback_data.offset
-        await state.update_data({"offset": offset})
+
+        if isinstance(callback_data, PaginationCallback):
+            offset = callback_data.offset
+            await state.update_data({"offset": offset})
 
     async with RequestContext(
             event=event,
@@ -76,14 +84,46 @@ async def announcements_feed(
         )
 
         if isinstance(event, Message):
+            message = await event.answer(
+                text=_("Updating..."),
+                reply_markup=ReplyKeyboardRemove()
+            )
+
+            await message.delete()
+
             await event.answer_photo(
                 photo=photo_url,
                 caption=text,
                 reply_markup=reply_markup
             )
+        elif isinstance(event, CallbackQuery) and isinstance(callback_data, BackCallback):
+            await event.message.answer_photo(
+                photo=photo_url,
+                caption=text,
+                reply_markup=reply_markup
+            )
+
+            await event.message.delete()
         else:
             new_media = InputMediaPhoto(
                 media=photo_url,
                 caption=text
             )
             await event.message.edit_media(media=new_media, reply_markup=reply_markup)
+
+
+@router.callback_query(GeolocationCallback.filter(), AnnouncementsStates.FEED)
+async def show_geolocation(
+        query: CallbackQuery,
+        callback_data: GeolocationCallback,
+        state: FSMContext,
+):
+    await state.set_state(AnnouncementsStates.GEO)
+
+    await query.message.delete()
+
+    await query.message.answer_location(
+        latitude=callback_data.latitude,
+        longitude=callback_data.longitude,
+        reply_markup=get_geo_inline_keyboard()
+    )

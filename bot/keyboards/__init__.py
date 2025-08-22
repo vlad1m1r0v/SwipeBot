@@ -16,7 +16,7 @@ from .auth import (
 from .main import get_main_menu_keyboard
 from .announcements import (
     get_announcements_feed_inline_keyboard,
-    PaginationCallback
+    get_geo_inline_keyboard
 )
 
 __all__ = (
@@ -35,5 +35,5 @@ __all__ = (
     "get_register_edit_password_keyboard",
     "get_main_menu_keyboard",
     "get_announcements_feed_inline_keyboard",
-    "PaginationCallback",
+    "get_geo_inline_keyboard"
 )

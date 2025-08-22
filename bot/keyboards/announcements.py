@@ -1,20 +1,15 @@
-from aiogram.utils.keyboard import InlineKeyboardBuilder
-from aiogram.filters.callback_data import CallbackData
+from aiogram.utils.keyboard import (
+    InlineKeyboardBuilder,
+    InlineKeyboardButton
+)
 from aiogram.types import InlineKeyboardMarkup
 from aiogram.utils.i18n import gettext as _
 
-
-class GeolocationCallback(CallbackData, prefix="geo"):
-    longitude: float
-    latitude: float
-
-
-class PaginationCallback(CallbackData, prefix="page"):
-    offset: int
-
-
-class BackCallback(CallbackData, prefix="back"):
-    pass
+from bot.callbacks import (
+    BackCallback,
+    GeolocationCallback,
+    PaginationCallback
+)
 
 
 def get_announcements_feed_inline_keyboard(
@@ -50,5 +45,16 @@ def get_announcements_feed_inline_keyboard(
     builder.button(text=_("Back"), callback_data=BackCallback())
 
     builder.adjust(1, nav_buttons_count, 1)
+
+    return builder.as_markup()
+
+
+def get_geo_inline_keyboard() -> InlineKeyboardMarkup:
+    builder = InlineKeyboardBuilder()
+
+    builder.button(
+        text=_("Back"),
+        callback_data=BackCallback()
+    )
 
     return builder.as_markup()

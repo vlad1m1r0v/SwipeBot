@@ -1,7 +1,7 @@
-from contextlib import suppress
+from typing import Union
 
 from aiogram import Router, F
-from aiogram.types import Message
+from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.context import FSMContext
 from aiogram.utils.i18n import gettext as _, lazy_gettext as __
 
@@ -11,19 +11,26 @@ from bot.api import (
     RegisterScheme
 )
 from bot.database import Repository
-from bot.states import (LoginStates, RegisterStates, MainStates)
+from bot.states import (
+    LoginStates,
+    RegisterStates,
+    MainStates,
+    AnnouncementsStates
+)
 from bot.utilities.validation import validate_password
 from bot.keyboards import (
     get_login_enter_password_keyboard,
     get_main_menu_keyboard
 )
+from bot.callbacks import BackCallback
 
 router = Router()
 
 
+@router.callback_query(BackCallback.filter(), AnnouncementsStates.FEED)
 @router.message(F.text == __("Submit"), RegisterStates.SUBMIT_MENU)
 @router.message(F.text, LoginStates.ENTER_PASSWORD)
-async def main_menu(message: Message, **kwargs):
+async def main_menu(event: Union[Message, CallbackQuery], **kwargs):
     repository: Repository = kwargs.get("repository")
 
     state: FSMContext = kwargs.get("state")
@@ -40,15 +47,15 @@ async def main_menu(message: Message, **kwargs):
         )
 
         async with RequestContext(
-                event=message,
+                event=event,
                 state=state,
                 repository=repository
         ) as request:
             await request.register(data=register_data)
 
     elif current_state == LoginStates.ENTER_PASSWORD:
-        if validate_password(message.text):
-            await state.update_data({"password": message.text})
+        if validate_password(event.text):
+            await state.update_data({"password": event.text})
 
             data = await state.get_data()
 
@@ -58,13 +65,13 @@ async def main_menu(message: Message, **kwargs):
             )
 
             async with RequestContext(
-                    event=message,
+                    event=event,
                     state=state,
                     repository=repository
             ) as request:
                 await request.login(data=login_data)
         else:
-            return await message.answer(
+            return await event.answer(
                 text=_("Validation error. Please, enter password again:"),
                 reply_markup=get_login_enter_password_keyboard()
             )
@@ -72,7 +79,15 @@ async def main_menu(message: Message, **kwargs):
     await state.clear()
     await state.set_state(MainStates.MAIN_MENU)
 
-    return await message.answer(
-        text=_("Select action:"),
-        reply_markup=get_main_menu_keyboard()
-    )
+    if isinstance(event, CallbackQuery):
+        await event.message.delete()
+
+        return await event.message.answer(
+            text=_("Select action:"),
+            reply_markup=get_main_menu_keyboard()
+        )
+    else:
+        return await event.answer(
+            text=_("Select action:"),
+            reply_markup=get_main_menu_keyboard()
+        )

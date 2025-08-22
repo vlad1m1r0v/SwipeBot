@@ -18,6 +18,11 @@ from .announcements import (
     get_announcements_feed_inline_keyboard,
     get_geo_inline_keyboard
 )
+from .profile import (
+    get_profile_menu_keyboard,
+    get_profile_announcements_keyboard,
+    get_profile_information_keyboard
+)
 
 __all__ = (
     "get_language_menu_keyboard",
@@ -35,5 +40,8 @@ __all__ = (
     "get_register_edit_password_keyboard",
     "get_main_menu_keyboard",
     "get_announcements_feed_inline_keyboard",
-    "get_geo_inline_keyboard"
+    "get_geo_inline_keyboard",
+    "get_profile_menu_keyboard",
+    "get_profile_announcements_keyboard",
+    "get_profile_information_keyboard"
 )

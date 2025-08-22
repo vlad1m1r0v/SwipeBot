@@ -11,5 +11,5 @@ def get_main_menu_keyboard() -> ReplyKeyboardMarkup:
             [KeyboardButton(text=_("Log out"))],
         ],
         resize_keyboard=True,
-        input_field_placeholder=_("Select action...")
+        input_field_placeholder=_("Select option...")
     )

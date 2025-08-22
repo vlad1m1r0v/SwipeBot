@@ -15,7 +15,8 @@ from bot.states import (
     LoginStates,
     RegisterStates,
     MainStates,
-    AnnouncementsStates
+    AnnouncementsStates,
+    UserStates
 )
 from bot.utilities.validation import validate_password
 from bot.keyboards import (
@@ -26,7 +27,7 @@ from bot.callbacks import BackCallback
 
 router = Router()
 
-
+@router.message(F.text == __("Back"), UserStates.MENU)
 @router.callback_query(BackCallback.filter(), AnnouncementsStates.FEED)
 @router.message(F.text == __("Submit"), RegisterStates.SUBMIT_MENU)
 @router.message(F.text, LoginStates.ENTER_PASSWORD)

@@ -1,7 +1,4 @@
-from aiogram.utils.keyboard import (
-    InlineKeyboardBuilder,
-    InlineKeyboardButton
-)
+from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram.types import InlineKeyboardMarkup
 from aiogram.utils.i18n import gettext as _
 

@@ -2,6 +2,11 @@ from dataclasses import asdict
 
 from httpx import AsyncClient, HTTPStatusError
 
+from bot.utilities.pagination import (
+    ANNOUNCEMENTS_PER_PAGE,
+    MY_ANNOUNCEMENTS_PER_PAGE
+)
+
 from bot.database import (
     Repository,
     GetUser,
@@ -127,5 +132,14 @@ class APIClient:
         return await self.__make_authorized_request(
             method="GET",
             path="/announcements",
-            params={"limit": 1, "offset": offset}
+            params={"limit": ANNOUNCEMENTS_PER_PAGE, "offset": offset}
+        )
+
+    async def get_my_announcements(
+            self, offset: int
+    ) -> SuccessResponse[PaginatedResponse[GetAnnouncementSchema]]:
+        return await self.__make_authorized_request(
+            method="GET",
+            path="/user/announcements",
+            params={"limit": MY_ANNOUNCEMENTS_PER_PAGE, "offset": offset}
         )

@@ -55,8 +55,8 @@ class GetApartmentSchema(TypedDict):
     price: int
     rooms: int
     area: float
-    floor_no: int
-    total_floors: int
+    floor_no: int | None
+    total_floors: int | None
     address: str
     longitude: float
     latitude: float

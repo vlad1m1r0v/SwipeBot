@@ -1,5 +1,6 @@
 from aiogram import Router
 
+from .commands import get_commands
 from .start import router as start_router
 from .language import router as language_router
 from .auth import router as auth_router
@@ -16,4 +17,4 @@ router.include_routers(
     announcements_router
 )
 
-__all__ = ("router",)
+__all__ = ("router", "get_commands")

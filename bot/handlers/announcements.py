@@ -1,5 +1,7 @@
 from typing import Union
 
+import time
+
 from aiogram import Router, F
 from aiogram.types import (
     Message,
@@ -59,11 +61,11 @@ async def announcements_feed(
         text = (f"{_('Price:')} {announcement["apartment"]["price"]}\n" +
                 f"{_('Rooms:')} {announcement["apartment"]["rooms"]}\n" +
                 f"{_('Area:')} {announcement["apartment"]["area"]}\n" +
-                f"{_('Floor:')} {announcement["apartment"]["floor_no"]}\n" +
-                f"{_('Total floors:')} {announcement["apartment"]["total_floors"]}\n" +
+                f"{_('Floor:')} {announcement["apartment"]["floor_no"] or "Not selected"}\n" +
+                f"{_('Total floors:')} {announcement["apartment"]["total_floors"] or "Not selected"}\n" +
                 f"{_('Address:')} {announcement["apartment"]["address"]}\n")
 
-        photo_url = announcement["apartment"]["preview_url"]
+        photo_url = f"{announcement["apartment"]["preview_url"]}?cache_bust={int(time.time())}"
 
         reply_markup = get_announcements_feed_inline_keyboard(
             limit=response["data"]["limit"],

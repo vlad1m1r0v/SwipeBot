@@ -12,7 +12,7 @@ from redis.asyncio import Redis
 
 from bot.utilities.enums import Language
 from bot.utilities.dirs import (ENV_PATH, LOCALES_DIR)
-from bot.handlers import router
+from bot.handlers import (router, get_commands)
 from bot.database import Repository
 from bot.middlewares import (CustomI18nMiddleware, AuthMiddleware)
 
@@ -34,6 +34,7 @@ async def bot_start() -> None:
     dispatcher.callback_query.middleware(AuthMiddleware())
 
     bot = Bot(token=os.getenv("BOT_TOKEN"), default=DefaultBotProperties(parse_mode="HTML"))
+    await bot.set_my_commands(commands=get_commands())
 
     await dispatcher.start_polling(bot, repository=repository)
 

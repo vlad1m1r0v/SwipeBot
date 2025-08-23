@@ -64,12 +64,14 @@ async def announcements_feed(
 
         announcement = response["data"]["items"][0]
 
-        text = (f"{_('Price:')} {announcement["apartment"]["price"]}\n" +
-                f"{_('Rooms:')} {announcement["apartment"]["rooms"]}\n" +
-                f"{_('Area:')} {announcement["apartment"]["area"]}\n" +
-                f"{_('Floor:')} {announcement["apartment"]["floor_no"] or "Not selected"}\n" +
-                f"{_('Total floors:')} {announcement["apartment"]["total_floors"] or "Not selected"}\n" +
-                f"{_('Address:')} {announcement["apartment"]["address"]}\n")
+        text = (
+            f"{_('Price:')} {announcement['apartment'].get('price', _('Not available'))}\n"
+            f"{_('Rooms:')} {announcement['apartment'].get('rooms', _('Not available'))}\n"
+            f"{_('Area:')} {announcement['apartment'].get('area', _('Not available'))}\n"
+            f"{_('Floor:')} {announcement['apartment'].get('floor_no', _('Not selected'))}\n"
+            f"{_('Total floors:')} {announcement['apartment'].get('total_floors', _('Not selected'))}\n"
+            f"{_('Address:')} {announcement['apartment'].get('address', _('Not available'))}\n"
+        )
 
         photo_url = f"{announcement["apartment"]["preview_url"]}?cache_bust={int(time.time())}"
 

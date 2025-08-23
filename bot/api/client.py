@@ -19,7 +19,8 @@ from .schemas import (
     TokensSchema,
     SuccessResponse,
     PaginatedResponse,
-    GetAnnouncementSchema
+    GetAnnouncementSchema,
+    GetUserSchema
 )
 
 
@@ -142,4 +143,10 @@ class APIClient:
             method="GET",
             path="/user/announcements",
             params={"limit": MY_ANNOUNCEMENTS_PER_PAGE, "offset": offset}
+        )
+
+    async def get_profile(self) -> SuccessResponse[GetUserSchema]:
+        return await self.__make_authorized_request(
+            method="GET",
+            path="/user/profile"
         )

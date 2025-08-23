@@ -1,6 +1,8 @@
+import enum
+
 from typing import Generic, TypeVar, TypedDict
 
-from datetime import time
+from datetime import time, datetime
 
 from dataclasses import dataclass
 
@@ -10,11 +12,13 @@ T = TypeVar('T')
 class SuccessResponse(TypedDict, Generic[T]):
     data: T
 
+
 class PaginatedResponse(TypedDict, Generic[T]):
     limit: int
     offset: int
     total: int
     items: list[T]
+
 
 class ErrorDetail(TypedDict):
     field: str
@@ -62,16 +66,64 @@ class GetApartmentSchema(TypedDict):
     latitude: float
     preview_url: str
 
+
 class GetPromotionSchema(TypedDict):
     id: int
     highlight_colour: str
     phrase: str
+
 
 class GetAnnouncementSchema(TypedDict):
     id: int
     viewing_time: time
     apartment: GetApartmentSchema
     promotion: GetPromotionSchema
+
+
+class GetContactSchema(TypedDict):
+    id: int
+    first_name: str | None
+    last_name: str | None
+    email: str | None
+    phone: str | None
+
+
+class GetBalanceSchema(TypedDict):
+    id: int
+    value: int
+
+
+class GetSubscriptionSchema(TypedDict):
+    id: int
+    is_auto_renewal: bool
+    expiry_date: str
+
+
+class NotificationType(str, enum.Enum):
+    DISABLED = "disabled"
+    ME = "me"
+    AGENT = "agent"
+    ME_AND_AGENT = "me_and_agent"
+
+
+class GetNotificationSettingsSchema(TypedDict):
+    id: int
+    redirect_notifications_to_agent: bool
+    notification_type: NotificationType
+
+
+class GetUserSchema(TypedDict):
+    id: int
+    name: str
+    email: str
+    phone: str
+    photo_url: str | None
+    contact: GetContactSchema
+    agent_contact: GetContactSchema
+    balance: GetBalanceSchema
+    subscription: GetSubscriptionSchema
+    notification_settings: GetNotificationSettingsSchema
+
 
 __all__ = (
     "LoginScheme",
@@ -80,6 +132,7 @@ __all__ = (
     "SuccessResponse",
     "PaginatedResponse",
     "TokensSchema",
-    "GetAnnouncementSchema"
-
+    "GetAnnouncementSchema",
+    "GetApartmentSchema",
+    "GetUserSchema"
 )

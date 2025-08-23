@@ -28,7 +28,8 @@ def get_profile_announcements_keyboard(limit: int, offset: int, total: int) -> R
 
     builder.button(text=_("Back"))
 
-    builder.adjust(nav_buttons_count, 1)
+    if nav_buttons_count > 0:
+        builder.adjust(nav_buttons_count, 1)
 
     return builder.as_markup(resize_keyboard=True, input_field_placeholder=_("Select action..."))
 

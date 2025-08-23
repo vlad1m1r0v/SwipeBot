@@ -5,7 +5,8 @@ from .schemas import (
     PaginatedResponse,
     LoginScheme,
     RegisterScheme,
-    GetAnnouncementSchema
+    GetAnnouncementSchema,
+    GetUserSchema
 )
 
 __all__ = (
@@ -15,5 +16,6 @@ __all__ = (
     "RegisterScheme",
     "SuccessResponse",
     "PaginatedResponse",
-    "GetAnnouncementSchema"
+    "GetAnnouncementSchema",
+    "GetUserSchema"
 )

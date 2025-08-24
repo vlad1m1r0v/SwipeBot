@@ -1,10 +1,24 @@
-import enum
-
 from typing import Generic, TypeVar, TypedDict
 
-from datetime import time, datetime
+from datetime import time
 
 from dataclasses import dataclass
+
+from .enums import (
+    NotificationType,
+    Technology,
+    PropertyType,
+    OwnershipType,
+    Bedrooms,
+    Bathrooms,
+    Heating,
+    Commission,
+    ApartmentCondition,
+    Finishing,
+    Rooms,
+    CallMethod,
+    Action
+)
 
 T = TypeVar('T')
 
@@ -99,13 +113,6 @@ class GetSubscriptionSchema(TypedDict):
     expiry_date: str
 
 
-class NotificationType(str, enum.Enum):
-    DISABLED = "disabled"
-    ME = "me"
-    AGENT = "agent"
-    ME_AND_AGENT = "me_and_agent"
-
-
 class GetNotificationSettingsSchema(TypedDict):
     id: int
     redirect_notifications_to_agent: bool
@@ -125,6 +132,47 @@ class GetUserSchema(TypedDict):
     notification_settings: GetNotificationSettingsSchema
 
 
+@dataclass()
+class Base64Item:
+    action: Action
+    base64: str
+    order: int
+
+
+@dataclass
+class CreateApartmentSchema:
+    address: str
+    longitude: float
+    latitude: float
+    district: str
+    microdistrict: str
+    technology: Technology
+    property_type: PropertyType
+    ownership_type: OwnershipType
+    bedrooms: Bedrooms
+    bathrooms: Bathrooms
+    kitchen_area: float
+    heating: Heating
+    has_balcony_or_loggia: bool
+    has_mortgage: bool
+    commission_to_agent: Commission
+    condition: ApartmentCondition
+    finishing: Finishing
+    rooms: Rooms
+    area: float
+    call_method: CallMethod
+    description: str
+    price: int
+    scheme: str
+    gallery: list[Base64Item]
+
+
+@dataclass
+class CreateAnnouncementSchema:
+    apartment_id: int
+    viewing_time: time
+
+
 __all__ = (
     "LoginScheme",
     "RegisterScheme",
@@ -134,5 +182,7 @@ __all__ = (
     "TokensSchema",
     "GetAnnouncementSchema",
     "GetApartmentSchema",
-    "GetUserSchema"
+    "GetUserSchema",
+    "CreateApartmentSchema",
+    "CreateAnnouncementSchema"
 )

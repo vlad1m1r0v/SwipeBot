@@ -29,3 +29,12 @@ class Repository:
             {"telegram_id": telegram_id},
             {"$set": asdict(data, dict_factory=exclude_none_factory)}
         )
+
+    async def logout_user(self, telegram_id: int) -> UpdateResult:
+        return await self._collection.update_one(
+            {"telegram_id": telegram_id},
+            {"$unset": {
+                "access_token": "",
+                "refresh_token": ""
+            }}
+        )

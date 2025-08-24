@@ -32,7 +32,7 @@ class RequestContext:
         return APIClient(
             server_url=os.getenv("API_URI"),
             repository=self.__repository,
-            telegram_id=self.__event.from_user.id or self.__event.mesage.from_user.id
+            telegram_id=self.__event.from_user.id
         )
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
@@ -43,6 +43,8 @@ class RequestContext:
             response: Response = exc_val.response
 
             if response.status_code in [400, 401, 403, 404]:
+                await self.__repository.logout_user(self.__event.from_user.id)
+
                 await self.__state.set_state(StartStates.START_MENU)
                 text = _("You are not authorized. Please, log in or register.")
 

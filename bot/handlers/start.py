@@ -4,6 +4,7 @@ from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
 from aiogram.utils.i18n import gettext as _, lazy_gettext as __
 
+from bot.database import Repository
 from bot.states import (
     StartStates,
     LanguageStates,
@@ -30,8 +31,12 @@ router = Router()
 @router.message(F.text == __("Back"), LanguageStates.LANGUAGE_MENU)
 async def start_menu(
         message: Message,
-        state: FSMContext
+        state: FSMContext,
+        repository: Repository,
 ):
+    if message.text == _("Log out") and await state.get_state() == MainStates.MAIN_MENU:
+        await repository.logout_user(message.from_user.id)
+
     await state.clear()
     await state.set_state(StartStates.START_MENU)
 

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-08-19 16:08+0300\n"
-"PO-Revision-Date: 2025-08-19 16:09+0300\n"
+"POT-Creation-Date: 2025-08-27 16:50+0300\n"
+"PO-Revision-Date: 2025-08-27 16:51+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: uk\n"
 "Language-Team: uk <LL@li.org>\n"
@@ -19,91 +19,604 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.17.0\n"
 
-#: bot/handlers/language.py:19
-msgid "Select a language:"
-msgstr "Виберіть мову:"
+#: bot/api/context_manager.py:49 bot/middlewares/auth.py:45
+msgid "You are not authorized. Please, log in or register."
+msgstr "Ви не авторизовані. Будь ласка, увійдіть або зареєструйтеся."
 
-#: bot/handlers/language.py:40
-msgid "Language has been successfully changed."
-msgstr "Мову успішно змінено."
-
-#: bot/handlers/start.py:19
+#: bot/api/context_manager.py:64
+#, python-brace-format
 msgid ""
-"Welcome to the Swipe Bot.\n"
-"Select one of the listed options below:"
-msgstr "Вітаємо в Swipe Bot.\nВиберіть один з наведених нижче варіантів:"
+"An error occurred: {error_code}\n"
+"Details: {error_message}"
+msgstr ""
+"Виникла помилка: {error_code}\n"
+"Деталі: {error_message}"
 
-#: bot/keyboards/auth.py:7 bot/keyboards/auth.py:16 bot/keyboards/auth.py:26
-#: bot/keyboards/auth.py:36 bot/keyboards/auth.py:46 bot/keyboards/auth.py:56
+#: bot/api/context_manager.py:77
+msgid "An unexpected error occurred."
+msgstr "Виникла неочікувана помилка."
+
+#: bot/filters/form_cancel.py:22 bot/keyboards/announcement_creation.py:21
+#: bot/keyboards/announcement_creation.py:31
+#: bot/keyboards/announcement_creation.py:41
+#: bot/keyboards/announcement_creation.py:51
+#: bot/keyboards/announcement_creation.py:61
+#: bot/keyboards/announcement_creation.py:70
+#: bot/keyboards/announcement_creation.py:80
+#: bot/keyboards/announcement_creation.py:90
+#: bot/keyboards/announcement_creation.py:100
+#: bot/keyboards/announcement_creation.py:110
+#: bot/keyboards/announcement_creation.py:121
+#: bot/keyboards/announcement_creation.py:130
+#: bot/keyboards/announcement_creation.py:142
+#: bot/keyboards/announcement_creation.py:153
+#: bot/keyboards/announcement_creation.py:162
+#: bot/keyboards/announcement_creation.py:172
+#: bot/keyboards/announcement_creation.py:182
+#: bot/keyboards/announcement_creation.py:192
+#: bot/keyboards/announcement_creation.py:203
+#: bot/keyboards/announcement_creation.py:212
+#: bot/keyboards/announcement_creation.py:223
+#: bot/keyboards/announcement_creation.py:233
+#: bot/keyboards/announcement_creation.py:243
+#: bot/keyboards/announcement_creation.py:253 bot/keyboards/auth.py:8
+#: bot/keyboards/auth.py:18 bot/keyboards/auth.py:28 bot/keyboards/auth.py:38
+#: bot/keyboards/auth.py:48 bot/keyboards/auth.py:58 bot/keyboards/auth.py:72
 msgid "Cancel"
 msgstr "Скасувати"
 
-#: bot/keyboards/auth.py:7 bot/keyboards/auth.py:16 bot/keyboards/auth.py:26
-#: bot/keyboards/auth.py:36 bot/keyboards/auth.py:46 bot/keyboards/auth.py:56
-#: bot/keyboards/auth.py:79 bot/keyboards/auth.py:89 bot/keyboards/auth.py:99
-#: bot/keyboards/auth.py:109 bot/keyboards/language.py:9
+#: bot/filters/form_cancel.py:23 bot/handlers/auth.py:169
+#: bot/keyboards/announcement_creation.py:21
+#: bot/keyboards/announcement_creation.py:31
+#: bot/keyboards/announcement_creation.py:41
+#: bot/keyboards/announcement_creation.py:51
+#: bot/keyboards/announcement_creation.py:61
+#: bot/keyboards/announcement_creation.py:70
+#: bot/keyboards/announcement_creation.py:80
+#: bot/keyboards/announcement_creation.py:90
+#: bot/keyboards/announcement_creation.py:100
+#: bot/keyboards/announcement_creation.py:110
+#: bot/keyboards/announcement_creation.py:121
+#: bot/keyboards/announcement_creation.py:130
+#: bot/keyboards/announcement_creation.py:142
+#: bot/keyboards/announcement_creation.py:153
+#: bot/keyboards/announcement_creation.py:162
+#: bot/keyboards/announcement_creation.py:172
+#: bot/keyboards/announcement_creation.py:182
+#: bot/keyboards/announcement_creation.py:192
+#: bot/keyboards/announcement_creation.py:203
+#: bot/keyboards/announcement_creation.py:212
+#: bot/keyboards/announcement_creation.py:223
+#: bot/keyboards/announcement_creation.py:233
+#: bot/keyboards/announcement_creation.py:243
+#: bot/keyboards/announcement_creation.py:253 bot/keyboards/announcements.py:42
+#: bot/keyboards/announcements.py:53 bot/keyboards/auth.py:8
+#: bot/keyboards/auth.py:18 bot/keyboards/auth.py:28 bot/keyboards/auth.py:38
+#: bot/keyboards/auth.py:48 bot/keyboards/auth.py:58 bot/keyboards/auth.py:83
+#: bot/keyboards/auth.py:93 bot/keyboards/auth.py:103 bot/keyboards/auth.py:113
+#: bot/keyboards/language.py:9 bot/keyboards/profile.py:10
+#: bot/keyboards/profile.py:29 bot/keyboards/profile.py:40
 msgid "Back"
 msgstr "Назад"
 
-#: bot/keyboards/auth.py:10 bot/keyboards/auth.py:39
+#: bot/handlers/announcement_creation.py:66
+msgid "Enter viewing time:"
+msgstr "Введіть час перегляду:"
+
+#: bot/handlers/announcement_creation.py:81
+msgid "Validation error. Please, enter viewing time again:"
+msgstr "Помилка валідації. Будь ласка, введіть час перегляду ще раз:"
+
+#: bot/handlers/announcement_creation.py:86
+msgid "Enter address:"
+msgstr "Введіть адресу:"
+
+#: bot/handlers/announcement_creation.py:101
+msgid "Validation error. Please, enter address again:"
+msgstr "Помилка валідації. Будь ласка, введіть адресу ще раз:"
+
+#: bot/handlers/announcement_creation.py:106
+msgid "Enter district:"
+msgstr "Введіть район:"
+
+#: bot/handlers/announcement_creation.py:121
+msgid "Validation error. Please, enter district again:"
+msgstr "Помилка валідації. Будь ласка, введіть район ще раз:"
+
+#: bot/handlers/announcement_creation.py:126
+msgid "Enter microdistrict:"
+msgstr "Введіть мікрорайон:"
+
+#: bot/handlers/announcement_creation.py:141
+msgid "Validation error. Please, enter microdistrict again:"
+msgstr "Помилка валідації. Будь ласка, введіть мікрорайон ще раз:"
+
+#: bot/handlers/announcement_creation.py:146
+msgid "Share geolocation:"
+msgstr "Надішліть геолокацію:"
+
+#: bot/handlers/announcement_creation.py:161
+msgid "Select technology:"
+msgstr "Оберіть технологію будівництва:"
+
+#: bot/handlers/announcement_creation.py:174
+msgid "Select ownership type:"
+msgstr "Оберіть тип власності:"
+
+#: bot/handlers/announcement_creation.py:187
+msgid "Select property type:"
+msgstr "Оберіть тип нерухомості:"
+
+#: bot/handlers/announcement_creation.py:200
+msgid "Select bedrooms:"
+msgstr "Оберіть кількість спалень:"
+
+#: bot/handlers/announcement_creation.py:213
+msgid "Select bathrooms:"
+msgstr "Оберіть кількість ванних кімнат:"
+
+#: bot/handlers/announcement_creation.py:226
+msgid "Enter kitchen area:"
+msgstr "Введіть площу кухні:"
+
+#: bot/handlers/announcement_creation.py:241
+msgid "Validation error. Please, enter kitchen area again:"
+msgstr "Помилка валідації. Будь ласка, введіть площу кухні ще раз:"
+
+#: bot/handlers/announcement_creation.py:247
+msgid "Select heating:"
+msgstr "Оберіть опалення:"
+
+#: bot/handlers/announcement_creation.py:260
+msgid "Select has balcony or loggia:"
+msgstr "Оберіть, чи є балкон або лоджія:"
+
+#: bot/handlers/announcement_creation.py:269
+#: bot/handlers/announcement_creation.py:282
+#: bot/keyboards/announcement_creation.py:141
+#: bot/keyboards/announcement_creation.py:152
+msgid "Yes"
+msgstr "Так"
+
+#: bot/handlers/announcement_creation.py:273
+msgid "Select has mortgage:"
+msgstr "Оберіть, чи є іпотека:"
+
+#: bot/handlers/announcement_creation.py:286
+msgid "Select commission to agent:"
+msgstr "Оберіть комісію для агента:"
+
+#: bot/handlers/announcement_creation.py:299
+msgid "Select condition:"
+msgstr "Оберіть стан:"
+
+#: bot/handlers/announcement_creation.py:312
+msgid "Select finishing:"
+msgstr "Оберіть оздоблення:"
+
+#: bot/handlers/announcement_creation.py:325
+msgid "Select rooms:"
+msgstr "Оберіть кількість кімнат:"
+
+#: bot/handlers/announcement_creation.py:338
+msgid "Enter area:"
+msgstr "Введіть площу:"
+
+#: bot/handlers/announcement_creation.py:353
+msgid "Validation error. Please, enter area again:"
+msgstr "Помилка валідації. Будь ласка, введіть площу ще раз:"
+
+#: bot/handlers/announcement_creation.py:359
+msgid "Select call method:"
+msgstr "Оберіть метод зв'язку:"
+
+#: bot/handlers/announcement_creation.py:372
+msgid "Enter description:"
+msgstr "Введіть опис:"
+
+#: bot/handlers/announcement_creation.py:387
+msgid "Validation error. Please, enter description again:"
+msgstr "Помилка валідації. Будь ласка, введіть опис ще раз:"
+
+#: bot/handlers/announcement_creation.py:393
+msgid "Enter price:"
+msgstr "Введіть ціну:"
+
+#: bot/handlers/announcement_creation.py:408
+msgid "Validation error. Please, enter price again:"
+msgstr "Помилка валідації. Будь ласка, введіть ціну ще раз:"
+
+#: bot/handlers/announcement_creation.py:414
+msgid "Upload scheme:"
+msgstr "Завантажте схему:"
+
+#: bot/handlers/announcement_creation.py:426
+msgid "Upload gallery:"
+msgstr "Завантажте галерею:"
+
+#: bot/handlers/announcements.py:68 bot/handlers/profile.py:96
+msgid "Price:"
+msgstr "Ціна:"
+
+#: bot/handlers/announcements.py:68 bot/handlers/announcements.py:69
+#: bot/handlers/announcements.py:70 bot/handlers/announcements.py:73
+#: bot/handlers/profile.py:96 bot/handlers/profile.py:97
+#: bot/handlers/profile.py:98 bot/handlers/profile.py:101
+msgid "Not available"
+msgstr "Не вказано"
+
+#: bot/handlers/announcements.py:69 bot/handlers/profile.py:97
+msgid "Rooms:"
+msgstr "Кімнати:"
+
+#: bot/handlers/announcements.py:70 bot/handlers/profile.py:98
+msgid "Area:"
+msgstr "Площа:"
+
+#: bot/handlers/announcements.py:71 bot/handlers/profile.py:99
+msgid "Floor:"
+msgstr "Поверх:"
+
+#: bot/handlers/announcements.py:71 bot/handlers/announcements.py:72
+#: bot/handlers/profile.py:99 bot/handlers/profile.py:100
+msgid "Not selected"
+msgstr "Не обрано"
+
+#: bot/handlers/announcements.py:72 bot/handlers/profile.py:100
+msgid "Total floors:"
+msgstr "Поверхів:"
+
+#: bot/handlers/announcements.py:73 bot/handlers/profile.py:101
+msgid "Address:"
+msgstr "Адреса:"
+
+#: bot/handlers/announcements.py:88
+msgid "Updating..."
+msgstr "Оновлення..."
+
+#: bot/handlers/auth.py:39 bot/handlers/auth.py:192
+msgid "Enter name:"
+msgstr "Введіть ім'я:"
+
+#: bot/handlers/auth.py:54
+msgid "Validation error. Please, enter name again:"
+msgstr "Помилка валідації. Будь ласка, введіть ім'я ще раз:"
+
+#: bot/handlers/auth.py:59 bot/handlers/auth.py:201 bot/handlers/auth.py:229
+msgid "Enter email:"
+msgstr "Введіть електронну пошту:"
+
+#: bot/handlers/auth.py:74 bot/handlers/auth.py:247
+msgid "Validation error. Please, enter email again:"
+msgstr "Помилка валідації. Будь ласка, введіть електронну пошту ще раз:"
+
+#: bot/handlers/auth.py:79 bot/handlers/auth.py:210
+msgid "Enter phone:"
+msgstr "Введіть телефон:"
+
+#: bot/handlers/auth.py:92 bot/handlers/auth.py:219 bot/handlers/auth.py:241
+msgid "Enter password:"
+msgstr "Введіть пароль:"
+
+#: bot/handlers/auth.py:98
+msgid "Validation error. Please, enter phone again:"
+msgstr "Помилка валідації. Будь ласка, введіть телефон ще раз:"
+
+#: bot/handlers/auth.py:117
+msgid "Entered name:"
+msgstr "Введене ім'я:"
+
+#: bot/handlers/auth.py:118
+msgid "Entered email:"
+msgstr "Введена електронна пошта:"
+
+#: bot/handlers/auth.py:119
+msgid "Entered phone:"
+msgstr "Введений телефон:"
+
+#: bot/handlers/auth.py:120
+msgid "Entered password:"
+msgstr "Введений пароль:"
+
+#: bot/handlers/auth.py:121 bot/handlers/main.py:170 bot/handlers/main.py:175
+#: bot/handlers/profile.py:39
+msgid "Select action:"
+msgstr "Оберіть дію:"
+
+#: bot/handlers/auth.py:182
+#, python-brace-format
+msgid "Validation error. Please, enter {} again:"
+msgstr "Помилка валідації. Будь ласка, введіть {} ще раз:"
+
+#: bot/handlers/language.py:19
+msgid "Select a language:"
+msgstr "Оберіть мову:"
+
+#: bot/handlers/language.py:39
+msgid "Language has been successfully changed."
+msgstr "Мову було успішно змінено."
+
+#: bot/handlers/main.py:100
+msgid "Validation error. Please, enter password again:"
+msgstr "Помилка валідації. Будь ласка, введіть пароль ще раз:"
+
+#: bot/handlers/main.py:159
+msgid "Announcement was created successfully."
+msgstr "Оголошення було успішно створено."
+
+#: bot/handlers/profile.py:58
+msgid "Loading your announcements..."
+msgstr "Завантаження ваших оголошень..."
+
+#: bot/handlers/profile.py:67 bot/keyboards/announcements.py:30
+#: bot/keyboards/profile.py:22
+msgid "Previous"
+msgstr "Попередня"
+
+#: bot/handlers/profile.py:71 bot/keyboards/announcements.py:37
+#: bot/keyboards/profile.py:26
+msgid "Next"
+msgstr "Наступна"
+
+#: bot/handlers/profile.py:90
+msgid "You have not created any announcements."
+msgstr "Ви ще не створили жодного оголошення."
+
+#: bot/handlers/profile.py:143
+msgid "<b>Account:</b>"
+msgstr "<b>Обліковий запис:</b>"
+
+#: bot/handlers/profile.py:144
+msgid "Name:"
+msgstr "Ім'я:"
+
+#: bot/handlers/profile.py:144 bot/handlers/profile.py:145
+#: bot/handlers/profile.py:146 bot/handlers/profile.py:148
+#: bot/handlers/profile.py:149 bot/handlers/profile.py:150
+#: bot/handlers/profile.py:151 bot/handlers/profile.py:153
+#: bot/handlers/profile.py:154 bot/handlers/profile.py:155
+#: bot/handlers/profile.py:156 bot/handlers/profile.py:157
+#: bot/handlers/profile.py:163
+msgid "Not entered"
+msgstr "Не введено"
+
+#: bot/handlers/profile.py:145 bot/handlers/profile.py:150
+#: bot/handlers/profile.py:155
+msgid "Email:"
+msgstr "Електронна пошта:"
+
+#: bot/handlers/profile.py:146 bot/handlers/profile.py:151
+#: bot/handlers/profile.py:156
+msgid "Phone:"
+msgstr "Телефон:"
+
+#: bot/handlers/profile.py:147
+msgid "<b>Contact:</b>"
+msgstr "<b>Контактна інформація:</b>"
+
+#: bot/handlers/profile.py:148 bot/handlers/profile.py:153
+msgid "First name:"
+msgstr "Ім'я:"
+
+#: bot/handlers/profile.py:149 bot/handlers/profile.py:154
+msgid "Last name:"
+msgstr "Прізвище:"
+
+#: bot/handlers/profile.py:152
+msgid "<b>Agent contact:</b>"
+msgstr "<b>Контакт агента:</b>"
+
+#: bot/handlers/profile.py:157
+msgid "<b>Balance:</b>"
+msgstr "<b>Баланс:</b>"
+
+#: bot/handlers/profile.py:158
+msgid "<b>Subscription:</b>"
+msgstr "<b>Підписка:</b>"
+
+#: bot/handlers/profile.py:159
+msgid "Autorenewal:"
+msgstr "Автопоновлення:"
+
+#: bot/handlers/profile.py:159 bot/handlers/profile.py:162
+msgid "enabled"
+msgstr "увімкнено"
+
+#: bot/handlers/profile.py:159 bot/handlers/profile.py:162
+msgid "disabled"
+msgstr "вимкнено"
+
+#: bot/handlers/profile.py:160
+msgid "Expiry:"
+msgstr "Закінчується:"
+
+#: bot/handlers/profile.py:161
+msgid "<b>Notification settings:</b>"
+msgstr "<b>Налаштування сповіщень:</b>"
+
+#: bot/handlers/profile.py:162
+msgid "Redirect notifications to agent:"
+msgstr "Перенаправляти сповіщення агенту:"
+
+#: bot/handlers/profile.py:163
+msgid "Send messages to:"
+msgstr "Надсилати повідомлення до:"
+
+#: bot/handlers/start.py:31 bot/keyboards/main.py:11
+msgid "Log out"
+msgstr "Вийти"
+
+#: bot/handlers/start.py:38
+msgid ""
+"Welcome to the Swipe Bot.\n"
+"Select one of the listed options below:"
+msgstr ""
+"Ласкаво просимо до Swipe Bot.\n"
+"Оберіть одну з опцій нижче:"
+
+#: bot/keyboards/announcement_creation.py:24
+msgid "Enter address..."
+msgstr "Ввести адресу..."
+
+#: bot/keyboards/announcement_creation.py:34
+msgid "Enter viewing time..."
+msgstr "Ввести час перегляду..."
+
+#: bot/keyboards/announcement_creation.py:44
+msgid "Share location..."
+msgstr "Надіслати локацію..."
+
+#: bot/keyboards/announcement_creation.py:54
+msgid "Enter district..."
+msgstr "Ввести район..."
+
+#: bot/keyboards/announcement_creation.py:64
+msgid "Enter microdistrict..."
+msgstr "Ввести мікрорайон..."
+
+#: bot/keyboards/announcement_creation.py:74
+msgid "Select technology..."
+msgstr "Обрати технологію..."
+
+#: bot/keyboards/announcement_creation.py:84
+msgid "Select property type..."
+msgstr "Обрати тип нерухомості..."
+
+#: bot/keyboards/announcement_creation.py:94
+msgid "Select ownership type..."
+msgstr "Обрати тип власності..."
+
+#: bot/keyboards/announcement_creation.py:104
+msgid "Select bedrooms..."
+msgstr "Обрати кількість спалень..."
+
+#: bot/keyboards/announcement_creation.py:114
+msgid "Select bathrooms..."
+msgstr "Обрати кількість ванних кімнат..."
+
+#: bot/keyboards/announcement_creation.py:124
+msgid "Enter kitchen area..."
+msgstr "Ввести площу кухні..."
+
+#: bot/keyboards/announcement_creation.py:134
+msgid "Select heating..."
+msgstr "Обрати опалення..."
+
+#: bot/keyboards/announcement_creation.py:141
+#: bot/keyboards/announcement_creation.py:152
+msgid "No"
+msgstr "Ні"
+
+#: bot/keyboards/announcement_creation.py:145
+#: bot/keyboards/announcement_creation.py:156 bot/keyboards/main.py:14
+#: bot/keyboards/profile.py:13
+msgid "Select option..."
+msgstr "Обрати опцію..."
+
+#: bot/keyboards/announcement_creation.py:166
+msgid "Select commission..."
+msgstr "Обрати комісію..."
+
+#: bot/keyboards/announcement_creation.py:176
+msgid "Select apartment condition..."
+msgstr "Обрати стан квартири..."
+
+#: bot/keyboards/announcement_creation.py:186
+msgid "Select finishing..."
+msgstr "Обрати оздоблення..."
+
+#: bot/keyboards/announcement_creation.py:196
+msgid "Select rooms..."
+msgstr "Обрати кількість кімнат..."
+
+#: bot/keyboards/announcement_creation.py:206
+msgid "Enter area..."
+msgstr "Ввести площу..."
+
+#: bot/keyboards/announcement_creation.py:216
+msgid "Select call method..."
+msgstr "Обрати метод зв'язку..."
+
+#: bot/keyboards/announcement_creation.py:226
+msgid "Enter description..."
+msgstr "Ввести опис..."
+
+#: bot/keyboards/announcement_creation.py:236
+msgid "Enter price..."
+msgstr "Ввести ціну..."
+
+#: bot/keyboards/announcement_creation.py:246
+msgid "Upload scheme..."
+msgstr "Завантажити схему..."
+
+#: bot/keyboards/announcement_creation.py:256
+msgid "Upload gallery..."
+msgstr "Завантажити галерею..."
+
+#: bot/keyboards/announcements.py:22
+msgid "Show geolocation"
+msgstr "Показати геолокацію"
+
+#: bot/keyboards/auth.py:11 bot/keyboards/auth.py:41
 msgid "Enter email..."
-msgstr "Введіть електронну адресу..."
+msgstr "Ввести електронну пошту..."
 
-#: bot/keyboards/auth.py:19 bot/keyboards/auth.py:59
+#: bot/keyboards/auth.py:21 bot/keyboards/auth.py:61
 msgid "Enter password..."
-msgstr "Введіть пароль..."
+msgstr "Ввести пароль..."
 
-#: bot/keyboards/auth.py:29
+#: bot/keyboards/auth.py:31
 msgid "Enter name..."
-msgstr "Введіть ім'я..."
+msgstr "Ввести ім'я..."
 
-#: bot/keyboards/auth.py:49
-msgid "Enter phone number..."
-msgstr "Введіть номер телефону..."
+#: bot/keyboards/auth.py:51
+msgid "Enter phone..."
+msgstr "Ввести телефон..."
 
-#: bot/keyboards/auth.py:65
+#: bot/keyboards/auth.py:68
 msgid "Edit name"
 msgstr "Редагувати ім'я"
 
-#: bot/keyboards/auth.py:66
+#: bot/keyboards/auth.py:69
 msgid "Edit email"
-msgstr "Редагувати електронну адресу"
+msgstr "Редагувати електронну пошту"
 
-#: bot/keyboards/auth.py:67
-msgid "Edit phone number"
-msgstr "Редагувати номер телефону"
+#: bot/keyboards/auth.py:70
+msgid "Edit phone"
+msgstr "Редагувати телефон"
 
-#: bot/keyboards/auth.py:68
+#: bot/keyboards/auth.py:71
 msgid "Edit password"
 msgstr "Редагувати пароль"
 
-#: bot/keyboards/auth.py:69
+#: bot/keyboards/auth.py:72
 msgid "Submit"
 msgstr "Підтвердити"
 
-#: bot/keyboards/auth.py:73 bot/keyboards/start.py:13
+#: bot/keyboards/auth.py:76 bot/keyboards/profile.py:34
+#: bot/keyboards/profile.py:43 bot/keyboards/start.py:13
 msgid "Select action..."
-msgstr "Виберіть дію..."
+msgstr "Обрати дію..."
 
-#: bot/keyboards/auth.py:82
+#: bot/keyboards/auth.py:86
 msgid "Edit name..."
 msgstr "Редагувати ім'я..."
 
-#: bot/keyboards/auth.py:92
+#: bot/keyboards/auth.py:96
 msgid "Edit email..."
-msgstr "Редагувати електронну адресу..."
+msgstr "Редагувати електронну пошту..."
 
-#: bot/keyboards/auth.py:102
-msgid "Edit phone number..."
-msgstr "Редагувати номер телефону..."
+#: bot/keyboards/auth.py:106
+msgid "Edit phone..."
+msgstr "Редагувати телефон..."
 
-#: bot/keyboards/auth.py:112
+#: bot/keyboards/auth.py:116
 msgid "Edit password..."
 msgstr "Редагувати пароль..."
 
 #: bot/keyboards/language.py:8
 msgid "English"
-msgstr "English"
+msgstr "Англійська"
 
 #: bot/keyboards/language.py:8
 msgid "Українська"
@@ -111,25 +624,36 @@ msgstr "Українська"
 
 #: bot/keyboards/language.py:12
 msgid "Select language..."
-msgstr "Виберіть мову..."
+msgstr "Обрати мову..."
+
+#: bot/keyboards/main.py:8
+msgid "Announcements"
+msgstr "Оголошення"
+
+#: bot/keyboards/main.py:9
+msgid "Profile"
+msgstr "Профіль"
+
+#: bot/keyboards/main.py:10
+msgid "Create announcement"
+msgstr "Створити оголошення"
+
+#: bot/keyboards/profile.py:8
+msgid "My announcements"
+msgstr "Мої оголошення"
+
+#: bot/keyboards/profile.py:9
+msgid "Profile information"
+msgstr "Інформація про профіль"
 
 #: bot/keyboards/start.py:8
 msgid "Login"
-msgstr "Увійти"
+msgstr "Вхід"
 
 #: bot/keyboards/start.py:9
 msgid "Register"
-msgstr "Зареєструватися"
+msgstr "Реєстрація"
 
 #: bot/keyboards/start.py:10
 msgid "Change language"
 msgstr "Змінити мову"
-
-#: bot/middlewares/auth.py:40
-msgid "You are not authorized. Please, log in or register."
-msgstr "Ви не авторизовані. Будь ласка, увійдіть або зареєструйтеся."
-
-#: bot/middlewares/auth.py:43 bot/middlewares/auth.py:45
-msgid "Select action:"
-msgstr "Виберіть дію:"
-

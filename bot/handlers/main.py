@@ -103,8 +103,7 @@ async def main_menu(
 
     elif all([
         current_state == AnnouncementCreationStates.UPLOAD_GALLERY,
-        isinstance(event, Message),
-        bool(event.media_group_id)
+        isinstance(event, Message) and bool(event.media_group_id)
     ]):
         photo_ids = [m.photo[-1].file_id for m in album_messages]
         await state.update_data({"gallery": photo_ids})

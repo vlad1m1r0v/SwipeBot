@@ -4,6 +4,7 @@ from aiogram.types import Message
 from aiogram.fsm.context import FSMContext
 from aiogram.utils.i18n import gettext as _, lazy_gettext as __
 
+from bot.filters import FormCancelFilter
 from bot.database import Repository
 from bot.states import (
     StartStates,
@@ -19,15 +20,8 @@ router = Router()
 
 @router.message(CommandStart())
 @router.message(F.text == __("Log out"), MainStates.MAIN_MENU)
-@router.message(F.text == __("Back"), LoginStates.ENTER_EMAIL)
-@router.message(F.text == __("Cancel"), LoginStates.ENTER_EMAIL)
-@router.message(F.text == __("Cancel"), LoginStates.ENTER_PASSWORD)
-@router.message(F.text == __("Back"), RegisterStates.ENTER_NAME)
-@router.message(F.text == __("Cancel"), RegisterStates.ENTER_NAME)
-@router.message(F.text == __("Cancel"), RegisterStates.ENTER_EMAIL)
-@router.message(F.text == __("Cancel"), RegisterStates.ENTER_PHONE)
-@router.message(F.text == __("Cancel"), RegisterStates.ENTER_PASSWORD)
-@router.message(F.text == __("Cancel"), RegisterStates.SUBMIT_MENU)
+@router.message(FormCancelFilter(LoginStates))
+@router.message(FormCancelFilter(RegisterStates))
 @router.message(F.text == __("Back"), LanguageStates.LANGUAGE_MENU)
 async def start_menu(
         message: Message,

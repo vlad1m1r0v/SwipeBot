@@ -25,6 +25,7 @@ from .profile import (
 )
 from .announcement_creation import (
     get_announcement_creation_enter_viewing_time_keyboard,
+    get_announcement_creation_enter_address_keyboard,
     get_announcement_creation_share_location_keyboard,
     get_announcement_creation_enter_district_keyboard,
     get_announcement_creation_enter_microdistrict_keyboard,
@@ -70,6 +71,7 @@ __all__ = (
     "get_profile_announcements_keyboard",
     "get_profile_information_keyboard",
     "get_announcement_creation_enter_viewing_time_keyboard",
+    "get_announcement_creation_enter_address_keyboard",
     "get_announcement_creation_share_location_keyboard",
     "get_announcement_creation_enter_district_keyboard",
     "get_announcement_creation_enter_microdistrict_keyboard",

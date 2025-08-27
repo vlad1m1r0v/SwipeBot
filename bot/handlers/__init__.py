@@ -7,6 +7,7 @@ from .auth import router as auth_router
 from .main import router as main_router
 from .announcements import router as announcements_router
 from .profile import router as profile_router
+from .announcement_creation import router as announcement_creation_router
 
 router = Router()
 
@@ -16,7 +17,8 @@ router.include_routers(
     auth_router,
     main_router,
     announcements_router,
-    profile_router
+    profile_router,
+    announcement_creation_router
 )
 
 __all__ = ("router", "get_commands")

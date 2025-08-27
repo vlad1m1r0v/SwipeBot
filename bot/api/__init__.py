@@ -7,8 +7,10 @@ from .schemas import (
     RegisterScheme,
     GetAnnouncementSchema,
     GetUserSchema,
+    Base64Item,
     CreateApartmentSchema,
-    CreateAnnouncementSchema
+    CreateAnnouncementSchema,
+    IDResponseSchema
 )
 from .enums import (
     NotificationType,
@@ -35,7 +37,9 @@ __all__ = (
     "PaginatedResponse",
     "GetAnnouncementSchema",
     "GetUserSchema",
+    "Base64Item",
     "CreateApartmentSchema",
+    "IDResponseSchema",
     "CreateAnnouncementSchema",
     "NotificationType",
     "Technology",

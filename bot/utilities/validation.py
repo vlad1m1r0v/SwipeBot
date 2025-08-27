@@ -5,6 +5,9 @@ DIGIT = r"\d"
 SPECIAL_CHARACTER = r"[!@#$%^&*()_\-+=,.?\":{}|<>]"
 PHONE_NUMBER = r"^\+380\d{9}$"
 EMAIL = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+TIME = r"^(([01]\d)|(2[0-3])):[0-5]\d$"
+FLOAT = r"^\d+(\.\d+)?$"
+PRICE = r"^\d{5,7}$"
 
 
 def validate_name(name: str) -> bool:
@@ -33,9 +36,55 @@ def validate_password(password: str) -> bool:
     ])
 
 
+def validate_viewing_time(time: str) -> bool:
+    return bool(re.match(TIME, time))
+
+
+def validate_address(address: str) -> bool:
+    return 20 < len(address) < 100
+
+
+def validate_district(address: str) -> bool:
+    return 3 < len(address) < 50
+
+
+def validate_microdistrict(address: str) -> bool:
+    return 3 < len(address) < 50
+
+
+def validate_kitchen_area(kitchen_area: str) -> bool:
+    if bool(re.match(FLOAT, kitchen_area)):
+        area = float(kitchen_area)
+        return area < 1000
+    return False
+
+
+def validate_area(area: str) -> bool:
+    if bool(re.match(FLOAT, area)):
+        area = float(area)
+        return area < 10000
+    return False
+
+
+def validate_description(description: str) -> bool:
+    return 20 < len(description) < 1000
+
+
+def validate_price(price: str) -> bool:
+    return bool(re.match(PRICE, price))
+
+
 __all__ = (
     "validate_name",
     "validate_email",
     "validate_phone_number",
-    "validate_password"
+    "validate_password",
+    "validate_viewing_time",
+    "validate_address",
+    "validate_district",
+    "validate_microdistrict",
+    "validate_kitchen_area",
+    "validate_area",
+    "validate_description",
+    "validate_price"
 )

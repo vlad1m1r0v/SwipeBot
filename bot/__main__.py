@@ -14,7 +14,11 @@ from bot.utilities.enums import Language
 from bot.utilities.dirs import (ENV_PATH, LOCALES_DIR)
 from bot.handlers import (router, get_commands)
 from bot.database import Repository
-from bot.middlewares import (CustomI18nMiddleware, AuthMiddleware)
+from bot.middlewares import (
+    CustomI18nMiddleware,
+    AuthMiddleware,
+    AlbumMiddleware
+)
 
 
 async def bot_start() -> None:
@@ -29,6 +33,8 @@ async def bot_start() -> None:
     i18n_middleware = CustomI18nMiddleware(i18n)
 
     i18n_middleware.setup(dispatcher)
+
+    dispatcher.message.middleware(AlbumMiddleware())
 
     dispatcher.message.middleware(AuthMiddleware())
     dispatcher.callback_query.middleware(AuthMiddleware())

@@ -170,8 +170,10 @@ class CreateApartmentSchema:
 @dataclass
 class CreateAnnouncementSchema:
     apartment_id: int
-    viewing_time: time
+    viewing_time: str
 
+class IDResponseSchema(TypedDict):
+    id: int
 
 __all__ = (
     "LoginScheme",
@@ -183,6 +185,8 @@ __all__ = (
     "GetAnnouncementSchema",
     "GetApartmentSchema",
     "GetUserSchema",
+    "Base64Item",
     "CreateApartmentSchema",
-    "CreateAnnouncementSchema"
+    "CreateAnnouncementSchema",
+    "IDResponseSchema",
 )

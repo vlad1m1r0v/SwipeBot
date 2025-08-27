@@ -4,6 +4,7 @@ from .auth import RegisterStates, LoginStates
 from .main import MainStates
 from .user import UserStates
 from .announcements import AnnouncementsStates
+from .announcement_creation import AnnouncementCreationStates
 
 __all__ = (
     "StartStates",
@@ -12,5 +13,6 @@ __all__ = (
     "LanguageStates",
     "MainStates",
     "UserStates",
-    "AnnouncementsStates"
+    "AnnouncementsStates",
+    "AnnouncementCreationStates"
 )

@@ -15,6 +15,15 @@ from bot.api import (
     CallMethod
 )
 
+def get_announcement_creation_enter_address_keyboard() -> ReplyKeyboardMarkup:
+    return ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))],
+        ],
+        resize_keyboard=True,
+        input_field_placeholder=_("Enter address...")
+    )
+
 
 def get_announcement_creation_enter_viewing_time_keyboard() -> ReplyKeyboardMarkup:
     return ReplyKeyboardMarkup(
@@ -57,55 +66,50 @@ def get_announcement_creation_enter_microdistrict_keyboard() -> ReplyKeyboardMar
 
 
 def get_announcement_creation_select_technology_keyboard() -> ReplyKeyboardMarkup:
+    technology_rows = [[KeyboardButton(text=technology.value)] for technology in Technology]
+    navigation_row = [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))]
     return ReplyKeyboardMarkup(
-        keyboard=[
-            *[list(KeyboardButton(text=technology.value)) for technology in Technology],
-            [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))],
-        ],
+        keyboard=technology_rows + [navigation_row],
         resize_keyboard=True,
         input_field_placeholder=_("Select technology...")
     )
 
 
 def get_announcement_creation_select_property_type_keyboard() -> ReplyKeyboardMarkup:
+    property_type_rows = [[KeyboardButton(text=property_type.value)] for property_type in PropertyType]
+    navigation_row = [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))]
     return ReplyKeyboardMarkup(
-        keyboard=[
-            *[list(KeyboardButton(text=property_type.value)) for property_type in PropertyType],
-            [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))],
-        ],
+        keyboard=property_type_rows + [navigation_row],
         resize_keyboard=True,
         input_field_placeholder=_("Select property type...")
     )
 
 
 def get_announcement_creation_select_ownership_type_keyboard() -> ReplyKeyboardMarkup:
+    ownership_type_rows = [[KeyboardButton(text=ownership_type.value)] for ownership_type in OwnershipType]
+    navigation_row = [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))]
     return ReplyKeyboardMarkup(
-        keyboard=[
-            *[list(KeyboardButton(text=ownership_type.value)) for ownership_type in OwnershipType],
-            [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))],
-        ],
+        keyboard=ownership_type_rows + [navigation_row],
         resize_keyboard=True,
         input_field_placeholder=_("Select ownership type...")
     )
 
 
 def get_announcement_creation_select_bedrooms_keyboard() -> ReplyKeyboardMarkup:
+    bedrooms_rows = [[KeyboardButton(text=bedrooms.value)] for bedrooms in Bedrooms]
+    navigation_row = [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))]
     return ReplyKeyboardMarkup(
-        keyboard=[
-            *[list(KeyboardButton(text=bedrooms.value)) for bedrooms in Bedrooms],
-            [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))],
-        ],
+        keyboard=bedrooms_rows + [navigation_row],
         resize_keyboard=True,
         input_field_placeholder=_("Select bedrooms...")
     )
 
 
 def get_announcement_creation_select_bathrooms_keyboard() -> ReplyKeyboardMarkup:
+    bathrooms_rows = [[KeyboardButton(text=bathrooms.value)] for bathrooms in Bathrooms]
+    navigation_row = [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))]
     return ReplyKeyboardMarkup(
-        keyboard=[
-            *[list(KeyboardButton(text=bathrooms.value)) for bathrooms in Bathrooms],
-            [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))],
-        ],
+        keyboard=bathrooms_rows + [navigation_row],
         resize_keyboard=True,
         input_field_placeholder=_("Select bathrooms...")
     )
@@ -122,11 +126,10 @@ def get_announcement_creation_enter_kitchen_area_keyboard() -> ReplyKeyboardMark
 
 
 def get_announcement_creation_select_heating_keyboard() -> ReplyKeyboardMarkup:
+    heating_rows = [[KeyboardButton(text=heating.value)] for heating in Heating]
+    navigation_row = [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))]
     return ReplyKeyboardMarkup(
-        keyboard=[
-            *[list(KeyboardButton(text=heating.value)) for heating in Heating],
-            [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))],
-        ],
+        keyboard=heating_rows + [navigation_row],
         resize_keyboard=True,
         input_field_placeholder=_("Select heating...")
     )
@@ -155,44 +158,40 @@ def get_announcement_creation_select_has_mortgage_keyboard() -> ReplyKeyboardMar
 
 
 def get_announcement_creation_select_commission_keyboard() -> ReplyKeyboardMarkup:
+    commission_rows = [[KeyboardButton(text=str(commission.value))] for commission in Commission]
+    navigation_row = [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))]
     return ReplyKeyboardMarkup(
-        keyboard=[
-            *[list(KeyboardButton(text=str(commission.value))) for commission in Commission],
-            [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))],
-        ],
+        keyboard=commission_rows + [navigation_row],
         resize_keyboard=True,
         input_field_placeholder=_("Select commission...")
     )
 
 
 def get_announcement_creation_select_apartment_condition_keyboard() -> ReplyKeyboardMarkup:
+    condition_rows = [[KeyboardButton(text=condition.value)] for condition in ApartmentCondition]
+    navigation_row = [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))]
     return ReplyKeyboardMarkup(
-        keyboard=[
-            *[list(KeyboardButton(text=condition.value)) for condition in ApartmentCondition],
-            [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))],
-        ],
+        keyboard=condition_rows + [navigation_row],
         resize_keyboard=True,
         input_field_placeholder=_("Select apartment condition...")
     )
 
 
 def get_announcement_creation_select_finishing_keyboard() -> ReplyKeyboardMarkup:
+    finishing_rows = [[KeyboardButton(text=finishing.value)] for finishing in Finishing]
+    navigation_row = [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))]
     return ReplyKeyboardMarkup(
-        keyboard=[
-            *[list(KeyboardButton(text=finishing.value)) for finishing in Finishing],
-            [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))],
-        ],
+        keyboard=finishing_rows + [navigation_row],
         resize_keyboard=True,
         input_field_placeholder=_("Select finishing...")
     )
 
 
 def get_announcement_creation_select_rooms_keyboard() -> ReplyKeyboardMarkup:
+    rooms_rows = [[KeyboardButton(text=str(rooms.value))] for rooms in Rooms]
+    navigation_row = [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))]
     return ReplyKeyboardMarkup(
-        keyboard=[
-            *[list(KeyboardButton(text=str(rooms.value))) for rooms in Rooms],
-            [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))],
-        ],
+        keyboard=rooms_rows + [navigation_row],
         resize_keyboard=True,
         input_field_placeholder=_("Select rooms...")
     )
@@ -209,11 +208,10 @@ def get_announcement_creation_enter_area_keyboard() -> ReplyKeyboardMarkup:
 
 
 def get_announcement_creation_select_call_method_keyboard() -> ReplyKeyboardMarkup:
+    call_method_rows = [[KeyboardButton(text=call_method.value)] for call_method in CallMethod]
+    navigation_row = [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))]
     return ReplyKeyboardMarkup(
-        keyboard=[
-            *[list(KeyboardButton(text=call_method.value)) for call_method in CallMethod],
-            [KeyboardButton(text=_("Cancel")), KeyboardButton(text=_("Back"))],
-        ],
+        keyboard=call_method_rows + [navigation_row],
         resize_keyboard=True,
         input_field_placeholder=_("Select call method...")
     )

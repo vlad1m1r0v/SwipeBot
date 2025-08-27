@@ -91,7 +91,7 @@ async def announcements_feed(
 
             await message.delete()
 
-            await event.answer_photo(
+            return await event.answer_photo(
                 photo=photo_url,
                 caption=text,
                 reply_markup=reply_markup
@@ -103,13 +103,13 @@ async def announcements_feed(
                 reply_markup=reply_markup
             )
 
-            await event.message.delete()
+            return await event.message.delete()
         else:
             new_media = InputMediaPhoto(
                 media=photo_url,
                 caption=text
             )
-            await event.message.edit_media(media=new_media, reply_markup=reply_markup)
+            return await event.message.edit_media(media=new_media, reply_markup=reply_markup)
 
 
 @router.callback_query(GeolocationCallback.filter(), AnnouncementsStates.FEED)
@@ -122,7 +122,7 @@ async def show_geolocation(
 
     await query.message.delete()
 
-    await query.message.answer_location(
+    return await query.message.answer_location(
         latitude=callback_data.latitude,
         longitude=callback_data.longitude,
         reply_markup=get_geo_inline_keyboard()

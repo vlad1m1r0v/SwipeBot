@@ -20,7 +20,10 @@ from .schemas import (
     SuccessResponse,
     PaginatedResponse,
     GetAnnouncementSchema,
-    GetUserSchema
+    GetUserSchema,
+    CreateApartmentSchema,
+    CreateAnnouncementSchema,
+    IDResponseSchema
 )
 
 
@@ -150,3 +153,25 @@ class APIClient:
             method="GET",
             path="/user/profile"
         )
+
+    async def create_apartment(
+            self, data: CreateApartmentSchema
+    ) -> SuccessResponse[IDResponseSchema]:
+        response: SuccessResponse[IDResponseSchema] = await self.__make_authorized_request(
+            method="POST",
+            path="/user/apartments",
+            json=asdict(data)
+        )
+
+        return response
+
+    async def create_announcement(
+            self, data: CreateAnnouncementSchema
+    ) -> SuccessResponse[IDResponseSchema]:
+        response: SuccessResponse[IDResponseSchema] = await self.__make_authorized_request(
+            method="POST",
+            path="/user/announcements",
+            json=asdict(data)
+        )
+
+        return response

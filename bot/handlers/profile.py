@@ -109,11 +109,12 @@ async def profile_announcements(
                     caption=text
                 )
             else:
-                await message.answer_photo(
+                return await message.answer_photo(
                     photo=photo_url,
                     caption=text,
                     reply_markup=reply_markup
                 )
+        return None
 
 
 @router.message(F.text == __("Profile information"), UserStates.MENU)
@@ -164,13 +165,13 @@ async def profile_announcements(
         photo_url = user.get("photo_url", None)
 
         if photo_url:
-            await message.answer_photo(
+            return await message.answer_photo(
                 photo=f"{photo_url}?cache_bust={int(time.time())}",
                 caption=text,
                 reply_markup=get_profile_information_keyboard()
             )
         else:
-            await message.answer(
+            return await message.answer(
                 text=text,
                 reply_markup=get_profile_information_keyboard()
             )

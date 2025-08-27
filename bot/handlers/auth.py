@@ -35,7 +35,7 @@ router = Router()
 @router.message(F.text == __("Register"), StartStates.START_MENU)
 async def register_enter_name(message: Message, state: FSMContext):
     await state.set_state(RegisterStates.ENTER_NAME)
-    await message.answer(
+    return await message.answer(
         text=_("Enter name:"),
         reply_markup=get_register_enter_name_keyboard()
     )
@@ -44,54 +44,57 @@ async def register_enter_name(message: Message, state: FSMContext):
 @router.message(F.text == __("Back"), RegisterStates.ENTER_PHONE)
 @router.message(F.text, RegisterStates.ENTER_NAME)
 async def register_enter_email(message: Message, state: FSMContext):
-    name = message.text
-    if validate_name(name):
-        await state.update_data({"name": name})
-        await state.set_state(RegisterStates.ENTER_EMAIL)
-        await message.answer(
-            text=_("Enter email:"),
-            reply_markup=get_register_enter_email_keyboard()
-        )
-    else:
-        await state.set_state(RegisterStates.ENTER_NAME)
-        await message.answer(
-            text=_("Validation error. Please, enter name again:"),
-            reply_markup=get_register_enter_name_keyboard()
-        )
+    if state.get_state() == RegisterStates.ENTER_NAME:
+        name = message.text
+        if validate_name(name):
+            await state.update_data({"name": name})
+        else:
+            await state.set_state(RegisterStates.ENTER_NAME)
+            return await message.answer(
+                text=_("Validation error. Please, enter name again:"),
+                reply_markup=get_register_enter_name_keyboard()
+            )
+    await state.set_state(RegisterStates.ENTER_EMAIL)
+    return await message.answer(
+        text=_("Enter email:"),
+        reply_markup=get_register_enter_email_keyboard()
+    )
 
 
 @router.message(F.text == __("Back"), RegisterStates.ENTER_PASSWORD)
 @router.message(F.text, RegisterStates.ENTER_EMAIL)
 async def register_enter_phone(message: Message, state: FSMContext):
-    email = message.text
-    if validate_email(email):
-        await state.update_data({"email": email})
-        await state.set_state(RegisterStates.ENTER_PHONE)
-        await message.answer(
-            text=_("Enter phone:"),
-            reply_markup=get_register_enter_phone_keyboard()
-        )
+    if state.get_state() == RegisterStates.ENTER_EMAIL:
+        email = message.text
+        if validate_email(email):
+            await state.update_data({"email": email})
     else:
         await state.set_state(RegisterStates.ENTER_EMAIL)
-        await message.answer(
+        return await message.answer(
             text=_("Validation error. Please, enter email again:"),
             reply_markup=get_register_enter_email_keyboard()
         )
+    await state.set_state(RegisterStates.ENTER_PHONE)
+    return await message.answer(
+        text=_("Enter phone:"),
+        reply_markup=get_register_enter_phone_keyboard()
+    )
 
 
 @router.message(F.text, RegisterStates.ENTER_PHONE)
 async def register_enter_password(message: Message, state: FSMContext):
     phone = message.text
+
     if validate_phone_number(phone):
         await state.update_data({"phone": phone})
         await state.set_state(RegisterStates.ENTER_PASSWORD)
-        await message.answer(
+        return await message.answer(
             text=_("Enter password:"),
             reply_markup=get_register_enter_password_keyboard()
         )
     else:
         await state.set_state(RegisterStates.ENTER_PHONE)
-        await message.answer(
+        return await message.answer(
             text=_("Validation error. Please, enter phone again:"),
             reply_markup=get_register_enter_phone_keyboard()
         )
@@ -164,7 +167,7 @@ async def register_submit_menu(message: Message, state: FSMContext):
     value = message.text
 
     if value == _("Back"):
-        await render_submit_menu()
+        return await render_submit_menu()
     else:
         current_state = await state.get_state()
         for state_case in cases:
@@ -172,19 +175,20 @@ async def register_submit_menu(message: Message, state: FSMContext):
                 if state_case.get("validation_rule")(value):
                     await state.update_data({state_case.get("field"): value})
                     await state.set_state(RegisterStates.SUBMIT_MENU)
-                    await render_submit_menu()
+                    return await render_submit_menu()
                 else:
                     await state.set_state(state_case.get("state"))
-                    await message.answer(
+                    return await message.answer(
                         text=_("Validation error. Please, enter {} again:").format(state_case.get("field")),
                         reply_markup=state_case.get("keyboard")
                     )
+        return None
 
 
 @router.message(F.text == __("Edit name"), RegisterStates.SUBMIT_MENU)
 async def register_edit_name(message: Message, state: FSMContext):
     await state.set_state(RegisterStates.EDIT_NAME)
-    await message.answer(
+    return await message.answer(
         text=_("Enter name:"),
         reply_markup=get_register_edit_name_keyboard()
     )
@@ -193,7 +197,7 @@ async def register_edit_name(message: Message, state: FSMContext):
 @router.message(F.text == __("Edit email"), RegisterStates.SUBMIT_MENU)
 async def register_edit_email(message: Message, state: FSMContext):
     await state.set_state(RegisterStates.EDIT_EMAIL)
-    await message.answer(
+    return await message.answer(
         text=_("Enter email:"),
         reply_markup=get_register_edit_email_keyboard()
     )
@@ -202,7 +206,7 @@ async def register_edit_email(message: Message, state: FSMContext):
 @router.message(F.text == __("Edit phone"), RegisterStates.SUBMIT_MENU)
 async def register_edit_phone(message: Message, state: FSMContext):
     await state.set_state(RegisterStates.EDIT_PHONE)
-    await message.answer(
+    return await message.answer(
         text=_("Enter phone:"),
         reply_markup=get_register_edit_phone_keyboard()
     )
@@ -211,7 +215,7 @@ async def register_edit_phone(message: Message, state: FSMContext):
 @router.message(F.text == __("Edit password"), RegisterStates.SUBMIT_MENU)
 async def register_edit_password(message: Message, state: FSMContext):
     await state.set_state(RegisterStates.EDIT_PASSWORD)
-    await message.answer(
+    return await message.answer(
         text=_("Enter password:"),
         reply_markup=get_register_edit_password_keyboard()
     )
@@ -221,7 +225,7 @@ async def register_edit_password(message: Message, state: FSMContext):
 @router.message(F.text == __("Login"), StartStates.START_MENU)
 async def login_enter_email(message: Message, state: FSMContext):
     await state.set_state(LoginStates.ENTER_EMAIL)
-    await message.answer(
+    return await message.answer(
         text=_("Enter email:"),
         reply_markup=get_login_enter_email_keyboard()
     )
@@ -233,13 +237,13 @@ async def login_enter_password(message: Message, state: FSMContext):
     if validate_email(email):
         await state.update_data({"email": email})
         await state.set_state(LoginStates.ENTER_PASSWORD)
-        await message.answer(
+        return await message.answer(
             text=_("Enter password:"),
             reply_markup=get_login_enter_password_keyboard()
         )
     else:
         await state.set_state(LoginStates.ENTER_EMAIL)
-        await message.answer(
+        return await message.answer(
             text=_("Validation error. Please, enter email again:"),
             reply_markup=get_login_enter_email_keyboard()
         )

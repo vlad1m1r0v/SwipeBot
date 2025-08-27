@@ -1,4 +1,4 @@
-FROM python:3.11-slim as builder
+FROM python:3.12-slim as builder
 
 RUN pip install poetry
 
@@ -10,7 +10,7 @@ RUN poetry install --no-root
 
 COPY . .
 
-FROM python:3.11-slim
+FROM python:3.12-slim
 
 WORKDIR /app
 

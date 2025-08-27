@@ -4,10 +4,14 @@ FROM python:3.12-slim AS builder
 # Set the working directory
 WORKDIR /app
 
+# Install system dependencies needed for Python packages
+RUN apt-get update && \
+    apt-get install -y build-essential
+
 # Copy dependency files
 COPY pyproject.toml poetry.lock ./
 
-# Install Poetry and export dependencies to requirements.txt
+# Install Poetry and export dependencies
 RUN pip install poetry && \
     poetry export -f requirements.txt --output requirements.txt --without-hashes
 

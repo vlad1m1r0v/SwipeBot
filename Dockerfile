@@ -15,11 +15,15 @@ COPY pyproject.toml poetry.lock ./
 RUN pip install poetry && \
     poetry self add poetry-plugin-export
 
-# Now, the 'export' command will be available
-RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
+# Export and install Python dependencies
+RUN poetry export -f requirements.txt --output requirements.txt --without-hashes && \
+    pip install -r requirements.txt
 
 # Copy all project files
 COPY . .
+
+# Compile locale files
+RUN pybabel compile -d locales
 
 # Stage 2: Create the final image
 FROM python:3.12-slim

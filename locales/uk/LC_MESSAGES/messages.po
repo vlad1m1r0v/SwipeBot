@@ -616,7 +616,7 @@ msgstr "Редагувати пароль..."
 
 #: bot/keyboards/language.py:8
 msgid "English"
-msgstr "Англійська"
+msgstr "English"
 
 #: bot/keyboards/language.py:8
 msgid "Українська"

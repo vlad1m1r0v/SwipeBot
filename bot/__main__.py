@@ -1,4 +1,7 @@
 import os
+
+import logging
+
 from dotenv import load_dotenv
 
 import asyncio
@@ -22,6 +25,11 @@ from bot.middlewares import (
 
 
 async def bot_start() -> None:
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
+    )
+
     repository = Repository(mongo_uri=os.getenv("MONGO_URI"))
 
     redis = Redis.from_url(os.getenv("REDIS_URI"))
